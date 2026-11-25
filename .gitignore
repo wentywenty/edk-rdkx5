@@ -1,5 +1,4 @@
-# EDK2 checkout / build trees
-edk2/
+# Build / output trees
 Build/
 
 # Build artifacts

@@ -27,7 +27,13 @@ set -euo pipefail
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 PKG_ROOT=$(cd "${SCRIPT_DIR}/../../../.." && pwd)
-EDK2_DIR=${X5_EDK2_DIR:-${PKG_ROOT}}
+if [ -n "${X5_EDK2_DIR:-}" ]; then
+  EDK2_DIR="${X5_EDK2_DIR}"
+elif [ -f "${PKG_ROOT}/edk2/BaseTools/Edk2ToolsBuild.py" ]; then
+  EDK2_DIR="${PKG_ROOT}/edk2"
+else
+  EDK2_DIR="${PKG_ROOT}"
+fi
 EDK_ROOT=$(cd "${EDK2_DIR}/.." && pwd)
 
 RDK_BOOTLOADER=${RDK_BOOTLOADER:-${EDK_ROOT}/rdk/x5-bootloader}

@@ -19,9 +19,17 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 # Root that contains Platform/ (the edk2 workspace when built in-tree, or the
 # edk-rdkx5 repository root when used as an out-of-tree package).
 PKG_ROOT=$(cd "${SCRIPT_DIR}/../../../.." && pwd)
-# edk2 workspace: defaults to PKG_ROOT for in-tree builds; set X5_EDK2_DIR when
-# the package lives in a separate repository.
-EDK2_DIR=${X5_EDK2_DIR:-${PKG_ROOT}}
+# edk2 workspace resolution:
+#  1. X5_EDK2_DIR if set
+#  2. PKG_ROOT/edk2   (umbrella repository with the edk2 submodule)
+#  3. PKG_ROOT        (package copied inside an edk2 checkout)
+if [ -n "${X5_EDK2_DIR:-}" ]; then
+  EDK2_DIR="${X5_EDK2_DIR}"
+elif [ -f "${PKG_ROOT}/edk2/BaseTools/Edk2ToolsBuild.py" ]; then
+  EDK2_DIR="${PKG_ROOT}/edk2"
+else
+  EDK2_DIR="${PKG_ROOT}"
+fi
 
 TARGET=${1:-DEBUG}
 TOOLCHAIN_PREFIX=${X5_TOOLCHAIN_PREFIX:-/opt/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-}
