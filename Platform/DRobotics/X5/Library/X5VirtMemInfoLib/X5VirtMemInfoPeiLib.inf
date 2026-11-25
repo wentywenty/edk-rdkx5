@@ -1,0 +1,43 @@
+## @file
+#  X5 (Sunrise X5) ArmVirtMemInfoLib instance.
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
+[Defines]
+  INF_VERSION                    = 0x0001001A
+  BASE_NAME                      = X5VirtMemInfoPeiLib
+  FILE_GUID                      = 3b4c8f21-6a1e-4f7d-9c02-5e8a7b1d6f30
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = ArmVirtMemInfoLib|PEIM
+  CONSTRUCTOR                    = X5VirtMemInfoPeiLibConstructor
+
+[Sources]
+  X5VirtMemInfoLib.c
+  X5VirtMemInfoPeiLibConstructor.c
+
+[Packages]
+  ArmPkg/ArmPkg.dec
+  ArmVirtPkg/ArmVirtPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
+  Platform/DRobotics/X5/X5Pkg.dec
+
+[LibraryClasses]
+  ArmLib
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  HobLib
+  MemoryAllocationLib
+  PcdLib
+
+[Guids]
+  gArmVirtSystemMemorySizeGuid
+
+[Pcd]
+  gArmTokenSpaceGuid.PcdSystemMemoryBase
+  gArmTokenSpaceGuid.PcdSystemMemorySize
+  gArmTokenSpaceGuid.PcdFdBaseAddress
+  gArmTokenSpaceGuid.PcdFdSize

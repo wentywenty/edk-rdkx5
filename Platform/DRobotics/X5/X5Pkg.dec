@@ -1,0 +1,27 @@
+## @file
+#  RDK X5 (D-Robotics / Horizon Sunrise X5, 8x Cortex-A55) platform package.
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = X5Pkg
+  PACKAGE_GUID                   = 5b1e9a10-7c3d-4e2f-9a8b-1d2c3e4f5a60
+  PACKAGE_VERSION                = 0.1
+
+[Includes.common]
+  Include
+
+[Guids.common]
+  gX5PkgTokenSpaceGuid           = { 0x8c2f4e71, 0x1a6b, 0x4d3e, { 0x91, 0x57, 0x2a, 0x3f, 0x6c, 0x08, 0xd4, 0xee } }
+
+[PcdsFixedAtBuild.common]
+  ## Base address of the X5 debug UART (DesignWare APB UART, 16550 compatible)
+  gX5PkgTokenSpaceGuid.PcdX5UartBaseAddress|0x32120000|UINT64|0x00000001
+  ## Input clock of the debug UART in Hz
+  gX5PkgTokenSpaceGuid.PcdX5UartClockRate|202752000|UINT32|0x00000002
+  ## GICv3 distributor base
+  gX5PkgTokenSpaceGuid.PcdX5GicDistributorBase|0x30100000|UINT64|0x00000003
+  ## GICv3 redistributor base
+  gX5PkgTokenSpaceGuid.PcdX5GicRedistributorsBase|0x30140000|UINT64|0x00000004

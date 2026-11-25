@@ -1,0 +1,28 @@
+# EDK2 checkout / build trees
+edk2/
+Build/
+
+# Build artifacts
+*.o
+*.d
+*.obj
+*.lib
+*.dll
+*.efi
+*.fd
+*.map
+*.debug
+
+# EDK2 autogen
+*.AutoGen.c
+*.AutoGen.h
+
+# Python
+__pycache__/
+*.pyc
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
